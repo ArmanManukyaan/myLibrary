@@ -1,4 +1,4 @@
-package com.example.mylibrary.servlet;
+package com.example.mylibrary.servlet.author;
 
 import manager.AuthorManager;
 import model.Author;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/updateAuthor")
-public class UpdateAuthor extends HttpServlet {
+public class UpdateAuthorServlet extends HttpServlet {
     private AuthorManager authorManager = new AuthorManager();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

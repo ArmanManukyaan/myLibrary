@@ -1,4 +1,4 @@
-package com.example.mylibrary.servlet;
+package com.example.mylibrary.servlet.author;
 
 import manager.AuthorManager;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/removeAuthor")
-public class RemoveAuthor extends HttpServlet {
+public class RemoveAuthorServlet extends HttpServlet {
     private AuthorManager authorManager = new AuthorManager();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -5,6 +5,17 @@
     <title>Main Page</title>
 </head>
 <body>
+<%
+    if (session.getAttribute("user") != null) {
+        response.sendRedirect("/home");
+    }
+    String msg = (String) session.getAttribute("msg");
+%>
+<% if (msg != null) {%>
+<span style="color: red"><%=msg%></span><br>
+<%
+        session.removeAttribute("msg");
+    }%>
 Login:
 <form action="/login" method="post">
     Email: <input name="email" type="text"><br>

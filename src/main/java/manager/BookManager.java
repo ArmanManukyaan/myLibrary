@@ -30,6 +30,20 @@ public class BookManager {
         }
     }
 
+    public List<Book> searchByName(String name) {
+        List<Book> bookList = new ArrayList<>();
+        String sql = "SELECT * from book where title LIKE ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "%" + name + "%");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                bookList.add(getBookFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
     public Book getById(int id) {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("Select * from book where id = " + id);
@@ -68,11 +82,11 @@ public class BookManager {
     public void update(Book book) {
         String sql = "UPDATE book Set title = ?,description = ?,price = ?,author_id = ? where id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, book.getId());
-            ps.setString(2, book.getTitle());
-            ps.setString(3, book.getDescription());
-            ps.setInt(4, book.getPrice());
-            ps.setInt(5, book.getAuthor().getId());
+            ps.setString(1, book.getTitle());
+            ps.setString(2, book.getDescription());
+            ps.setInt(3, book.getPrice());
+            ps.setInt(4, book.getAuthor().getId());
+            ps.setInt(5, book.getId());
             ps.executeUpdate();
             System.out.println("Table id and name edit");
         } catch (SQLException e) {

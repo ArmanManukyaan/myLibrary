@@ -5,6 +5,11 @@
     <title>Register Page</title>
 </head>
 <body>
+<%
+    if(session.getAttribute("user") != null){
+        response.sendRedirect("/home");
+    }
+%>
 Register:
 <form action="/register" method="post">
     Name: <input name="name" type="text"><br>

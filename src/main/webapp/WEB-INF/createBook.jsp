@@ -14,6 +14,7 @@
 <%List<Author> authors = (List<Author>) request.getAttribute("author"); %>
 <body>
 Create Book
+<a href="/book">Back</a>
 <form action="/createBook" method="post">
     Title <input name="title" type="text"><br>
     Description <input name="description" type="text"><br>

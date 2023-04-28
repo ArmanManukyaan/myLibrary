@@ -12,6 +12,7 @@
 </head>
 <body>
 Create Author
+<a href="/author">Back</a>
 <form action="/createAuthor" method="post">
     Name <input name="name" type="text"><br>
     Surname <input name="surname" type="text"><br>

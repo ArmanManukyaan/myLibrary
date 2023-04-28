@@ -6,8 +6,10 @@ import model.Author;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 public class AuthorManager {
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
+
     public void save(Author author) {
         String sql = "INSERT INTO author(name,surname,email,age) VALUES(?,?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -25,6 +27,7 @@ public class AuthorManager {
             e.printStackTrace();
         }
     }
+
     public Author getById(int id) {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("Select * from author where id = " + id);
@@ -36,6 +39,7 @@ public class AuthorManager {
         }
         return null;
     }
+
     public List<Author> getAll() {
         List<Author> authorList = new ArrayList<>();
         try {
@@ -49,6 +53,7 @@ public class AuthorManager {
         }
         return authorList;
     }
+
     public void removeById(int authorId) {
         String sql = "DELETE FROM author WHERE id = " + authorId;
         try (Statement statement = connection.createStatement()) {
@@ -57,6 +62,7 @@ public class AuthorManager {
             throw new RuntimeException(e);
         }
     }
+
     public void update(Author author) {
         String sql = "UPDATE author Set name = ?,surname = ?,email = ?,age = ? where id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -71,6 +77,7 @@ public class AuthorManager {
             e.printStackTrace();
         }
     }
+
     private Author getAuthorFromResultSet(ResultSet resultSet) throws SQLException {
         return Author.builder()
                 .id(resultSet.getInt("id"))

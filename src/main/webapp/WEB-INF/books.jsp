@@ -1,6 +1,8 @@
 <%@ page import="model.Author" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Book" %><%--
+<%@ page import="model.Book" %>
+<%@ page import="model.User" %>
+<%@ page import="model.UserType" %><%--
   Created by IntelliJ IDEA.
   User: Smart
   Date: 27.04.2023
@@ -12,9 +14,14 @@
 <head>
     <title>Authors</title>
 </head>
-<% List<Book> books= (List<Book>) request.getAttribute("book");%>
+<% List<Book> books = (List<Book>) request.getAttribute("book");%>
+<%User user = (User) session.getAttribute("user");%>
 <body>
+<a href="/home"> Back </a>
 <h2>Book</h2> <a href="/createBook">Create Book</a>
+<form action="/searchBook"method="post">
+    Name <input type="text" name="name">
+    <input type="submit" value="search">
 <table border="2">
     <tr>
         <th>id</th>
@@ -22,9 +29,11 @@
         <th>description</th>
         <th>price</th>
         <th>author</th>
+        <% if (user.getUserType() == UserType.ADMIN) { %>
         <th>action</th>
+        <%}%>
     </tr>
-    <%if ( books!= null || !books.isEmpty()) {%>
+    <%if (books != null || !books.isEmpty()) {%>
     <%for (Book book : books) {%>
     <tr>
         <td><%=book.getId()%>
@@ -36,11 +45,14 @@
         <td><%=book.getPrice()%>
         </td>
         <td><%=book.getAuthor().getName()%>
-        <td><a href="/removeAuthor?id=<%=book.getId()%>">Delete</a>
-            / <a href="/updateAuthor?id=<%=book.getId()%>">Update</a></td>
+                <% if (user.getUserType() == UserType.ADMIN) { %>
+        <td><a href="/removeBook?id=<%=book.getId()%>">Delete</a>
+            / <a href="/updateBook?id=<%=book.getId()%>">Update</a></td>
+        <%}%>
     </tr>
     <%}%>
     <%}%>
 </table>
+</form>
 </body>
 </html>
