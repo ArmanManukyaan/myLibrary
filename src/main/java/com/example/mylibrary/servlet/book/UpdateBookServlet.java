@@ -27,6 +27,7 @@ public class UpdateBookServlet extends HttpServlet {
         req.setAttribute("book", book);
         req.getRequestDispatcher("WEB-INF/updateBook.jsp").forward(req, resp);
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int authorId = Integer.parseInt(req.getParameter("authorID"));
@@ -35,6 +36,7 @@ public class UpdateBookServlet extends HttpServlet {
                 .title(req.getParameter("title"))
                 .description(req.getParameter("description"))
                 .price(Integer.parseInt(req.getParameter("price")))
+                .picName(req.getParameter("picName"))
                 .author(authorManager.getById(authorId))
                 .build());
         resp.sendRedirect("/book");

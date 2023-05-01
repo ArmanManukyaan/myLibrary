@@ -18,7 +18,8 @@ Create Author
     Surname <input name="surname" type="text"><br>
     Email <input name="email" type="text"><br>
     Age <input name="age" type="text"><br>
-    <input type="submit" value="create">
+    <input type="submit" value="c reate">
 </form>
+
 </body>
 </html>

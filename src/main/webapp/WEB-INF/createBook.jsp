@@ -13,19 +13,21 @@
 </head>
 <%List<Author> authors = (List<Author>) request.getAttribute("author"); %>
 <body>
-Create Book
-<a href="/book">Back</a>
-<form action="/createBook" method="post">
+Create Book <a href="/book">Back</a> <br>
+<form action="/createBook" method="post" enctype="multipart/form-data">
     Title <input name="title" type="text"><br>
     Description <input name="description" type="text"><br>
     Price <input name="price" type="text"><br>
     Author:
     <select name="authorID">
         <%for (Author author : authors) {%>
-        <option value="<%=author.getId()%>"><%=author.getName()%> <%=author.getSurname()%></option>
+        <option value="<%=author.getId()%>"><%=author.getName()%> <%=author.getSurname()%>
+        </option>
         <%}%>
     </select>
-    <input type="submit" value="create">
+    Image:
+    <input type="file" name="profilePic"><br>
+    <input type="submit" value="creat">
 </form>
 </body>
 </html>

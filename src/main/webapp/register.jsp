@@ -15,7 +15,6 @@ Register:
     Name: <input name="name" type="text"><br>
     Surname:<input name="surname" type="text"><br>
     Email:<input name="email" type="text"><br>
-    Age :<input name="age" type="text"><br>
     Password:<input name="password" type="password"><br>
     <select name="type">
         <option value="ADMIN">ADMIN</option>

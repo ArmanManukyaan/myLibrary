@@ -3,22 +3,20 @@ package manager;
 import dp.DBConnectionProvider;
 import model.Author;
 import model.Book;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class BookManager {
     private AuthorManager authorManager = new AuthorManager();
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
-
     public void save(Book book) {
-        String sql = "INSERT INTO book(title,description,price,author_id) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO book(title,description,price,pic_name,author_id) VALUES(?,?,?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getDescription());
             ps.setInt(3, book.getPrice());
-            ps.setInt(4, book.getAuthor().getId());
+            ps.setString(4, book.getPicName());
+            ps.setInt(5, book.getAuthor().getId());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -29,7 +27,6 @@ public class BookManager {
             e.printStackTrace();
         }
     }
-
     public List<Book> searchByName(String name) {
         List<Book> bookList = new ArrayList<>();
         String sql = "SELECT * from book where title LIKE ?";
@@ -55,7 +52,6 @@ public class BookManager {
         }
         return null;
     }
-
     public List<Book> getAll() {
         List<Book> bookList = new ArrayList<>();
         try {
@@ -80,7 +76,7 @@ public class BookManager {
     }
 
     public void update(Book book) {
-        String sql = "UPDATE book Set title = ?,description = ?,price = ?,author_id = ? where id = ?";
+        String sql = "UPDATE book Set title = ?,description = ?,price = ?,pic_name = ?,author_id = ? where id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getDescription());
@@ -101,6 +97,7 @@ public class BookManager {
                 .title(resultSet.getString("title"))
                 .description(resultSet.getString("description"))
                 .price(resultSet.getInt("price"))
+                .picName(resultSet.getString("pic_name"))
                 .author(authorManager.getById(authorId))
                 .build();
     }
