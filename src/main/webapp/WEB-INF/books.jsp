@@ -1,8 +1,8 @@
-<%@ page import="mylibrary.model.Author" %>
+<%@ page import="com.example.mylibrary.model.Author" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mylibrary.model.Book" %>
-<%@ page import="mylibrary.model.User" %>
-<%@ page import="mylibrary.model.UserType" %><%--
+<%@ page import="com.example.mylibrary.model.Book" %>
+<%@ page import="com.example.mylibrary.model.User" %>
+<%@ page import="com.example.mylibrary.model.UserType" %><%--
   Created by IntelliJ IDEA.
   User: Smart
   Date: 27.04.2023

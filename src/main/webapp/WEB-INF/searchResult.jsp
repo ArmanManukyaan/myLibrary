@@ -1,4 +1,4 @@
-<%@ page import="mylibrary.model.Book" %>
+<%@ page import="com.example.mylibrary.model.Book" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Smart

@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="mylibrary.model.Author" %>
-<%@ page import="mylibrary.model.Book" %><%--
+<%@ page import="com.example.mylibrary.model.Author" %>
+<%@ page import="com.example.mylibrary.model.Book" %><%--
   Created by IntelliJ IDEA.
   User: Smart
   Date: 28.04.2023
