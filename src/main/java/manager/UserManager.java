@@ -1,6 +1,7 @@
 package manager;
 
 import dp.DBConnectionProvider;
+import model.Book;
 import model.User;
 import model.UserType;
 
@@ -40,7 +41,17 @@ public class UserManager {
         }
         return null;
     }
-
+    public User getById(int id) {
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("Select * from user where id = " + id);
+            if (resultSet.next()) {
+                return getUserFromResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public User getByEmailAndPassword(String email, String password) {
         String sql = "Select * from user where email = ? AND password = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

@@ -2,15 +2,15 @@ package com.example.mylibrary.servlet.book;
 
 import manager.AuthorManager;
 import manager.BookManager;
+import manager.UserManager;
 import model.Author;
 import model.Book;
+import model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,6 +24,8 @@ public class CreateBookServlet extends HttpServlet {
     private static final String UPLOAD_FOLDER = "C:\\Users\\Smart\\IdeaProjects\\myLibrary\\src\\images\\";
     private AuthorManager authorManager = new AuthorManager();
     private BookManager bookManager = new BookManager();
+    private UserManager userManager = new UserManager();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Author> all = authorManager.getAll();
@@ -33,6 +35,9 @@ public class CreateBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int authorId = Integer.parseInt(req.getParameter("authorID"));
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        int id = user.getId();
         Part profilePicPart = req.getPart("profilePic");
         String picName = null;
         if (profilePicPart != null && profilePicPart.getSize() > 0) {
@@ -43,8 +48,9 @@ public class CreateBookServlet extends HttpServlet {
                 .title(req.getParameter("title"))
                 .description(req.getParameter("description"))
                 .price(Integer.parseInt(req.getParameter("price")))
-                .picName(req.getParameter(picName))
+                .picName(picName)
                 .author(authorManager.getById(authorId))
+                .user(userManager.getById(id))
                 .build());
         resp.sendRedirect("/book");
     }

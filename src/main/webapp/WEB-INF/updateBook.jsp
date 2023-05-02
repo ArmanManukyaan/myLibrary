@@ -16,8 +16,10 @@
 <%Book book = (Book) request.getAttribute("book");%>
 <body>
 Update Book
-<a href="/book">back</a>
-<form action="/updateBook" method="post">
+<a href="/book">back</a><br>
+Image:
+<img src="/getImage?picName=<%=book.getPicName()%>"width="150"><br>
+<form action="/updateBook" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<%=book.getId()%>">
     Title <input name="title" type="text" value="<%=book.getTitle()%>"><br>
     Description <input name="description" type="text" value="<%=book.getDescription()%>"><br>
@@ -29,6 +31,7 @@ Update Book
         </option>
         <%}%>
     </select>
+    <input type="file" name="profilePic"><br>
     <input type="submit" value="update">
 </form>
 </body>

@@ -1,4 +1,5 @@
 package model;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class Book {
     private int price;
     private String picName;
     private Author author;
+    private User user;
 }
