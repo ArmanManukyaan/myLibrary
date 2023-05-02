@@ -1,7 +1,7 @@
-<%@ page import="com.mylibrary.model.Author" %>
+<%@ page import="mylibrary.model.Author" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.mylibrary.model.User" %>
-<%@ page import="com.mylibrary.model.UserType" %><%--
+<%@ page import="mylibrary.model.User" %>
+<%@ page import="mylibrary.model.UserType" %><%--
   Created by IntelliJ IDEA.
   User: Smart
   Date: 27.04.2023

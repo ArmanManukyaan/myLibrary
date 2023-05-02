@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.mylibrary.model.Author" %><%--
+<%@ page import="mylibrary.model.Author" %><%--
   Created by IntelliJ IDEA.
   User: Smart
   Date: 28.04.2023
