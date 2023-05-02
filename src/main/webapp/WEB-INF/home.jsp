@@ -1,4 +1,4 @@
-<%@ page import="model.User" %><%--
+<%@ page import="com.mylibrary.model.User" %><%--
   Created by IntelliJ IDEA.
   User: Smart
   Date: 27.04.2023
