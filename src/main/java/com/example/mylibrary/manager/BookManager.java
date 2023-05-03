@@ -74,20 +74,6 @@ public class BookManager {
         return bookList;
     }
 
-    public List<Book> getAllForAdmin(int id) {
-        List<Book> bookList = new ArrayList<>();
-        String sql = "Select * from book where user_id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                bookList.add(getBookFromResultSet(resultSet));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return bookList;
-    }
 
     public List<Book> getAll() {
         List<Book> bookList = new ArrayList<>();
@@ -111,6 +97,7 @@ public class BookManager {
             throw new RuntimeException(e);
         }
     }
+
     public void update(Book book) {
         String sql = "UPDATE book Set title = ?,description = ?,price = ?,pic_name = ?,author_id = ?,user_id =? where id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
